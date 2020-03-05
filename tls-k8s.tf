@@ -27,7 +27,7 @@ resource "tls_self_signed_cert" "kube-ca" {
   }
 
   is_ca_certificate     = true
-  validity_period_hours = 8760
+  validity_period_hours = 24000
 
   allowed_uses = [
     "key_encipherment",
@@ -86,7 +86,7 @@ resource "tls_locally_signed_cert" "apiserver" {
   ca_private_key_pem = tls_private_key.kube-ca.private_key_pem
   ca_cert_pem        = tls_self_signed_cert.kube-ca.cert_pem
 
-  validity_period_hours = 8760
+  validity_period_hours = 24000
 
   allowed_uses = [
     "key_encipherment",
@@ -134,7 +134,7 @@ resource "tls_locally_signed_cert" "admin" {
   ca_private_key_pem = tls_private_key.kube-ca.private_key_pem
   ca_cert_pem        = tls_self_signed_cert.kube-ca.cert_pem
 
-  validity_period_hours = 8760
+  validity_period_hours = 24000
 
   allowed_uses = [
     "key_encipherment",
@@ -202,7 +202,7 @@ resource "tls_locally_signed_cert" "kubelet" {
   ca_private_key_pem = tls_private_key.kube-ca.private_key_pem
   ca_cert_pem        = tls_self_signed_cert.kube-ca.cert_pem
 
-  validity_period_hours = 8760
+  validity_period_hours = 24000
 
   allowed_uses = [
     "key_encipherment",
